@@ -1,20 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  resources :users
-
-  namespace :api do
-    resources :users, only: [:index, :update, :create] do
-      get 'me', on: :collection, action: :show
-      collection do
-        patch 'update_password'
-        post 'send_recovery_email'
-      end
-    end
-
-    resources :devices, only: [:index, :create]
+  # Use for login and autorize all resource
+  use_doorkeeper do
+    # No need to register client application
+    skip_controllers :applications, :authorized_applications
   end
 
-  root to: "dashboard#index"
+  scope module: :api, defaults: { format: :json }, path: 'api' do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+      devise_for :users, controllers: {
+           registrations: 'api/v1/users/registrations',
+       }, skip: [:sessions, :password]
+    end
+  end
 end
