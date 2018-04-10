@@ -1,10 +1,12 @@
 class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
-  skip_before_action :doorkeeper_authorize!
-  
+  skip_before_action :doorkeeper_authorize!, only: [:create], raise: false
+  skip_before_action :verify_authenticity_token
+
   # POST /resource
   def create
     build_resource(sign_up_params)
     resource.save
+
     if resource.persisted?
       if resource.active_for_authentication?
         # set_flash_message! :notice, :signed_up
@@ -21,6 +23,12 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
       set_minimum_password_length
       respond_with resource
     end
+  end
+
+  private
+
+  def sign_up_params
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params)
   end
 
 end
