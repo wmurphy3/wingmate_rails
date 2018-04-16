@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API
+class Api::V1::ApplicationController < ActionController::API
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   # Doorkeeper code
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
   private
 
   # Doorkeeper methods
-  def current_resource_owner
+  def current_user
     User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
   end
 end

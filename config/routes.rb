@@ -12,4 +12,12 @@ Rails.application.routes.draw do
        }, skip: [:sessions, :password]
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      resource :dashboard
+      resources :leagues
+      resource :achievement_types
+    end
+  end
 end
