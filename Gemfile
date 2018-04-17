@@ -63,3 +63,5 @@ gem 'doorkeeper'
 gem 'doorkeeper-jwt'
 
 gem 'rectify'
+
+gem "paranoia", "~> 2.2"

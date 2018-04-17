@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180416041028) do
+ActiveRecord::Schema.define(version: 20180417035412) do
 
   create_table "league_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "league_id"
     t.integer "user_id"
-    t.integer "points"
-    t.boolean "active"
+    t.integer "points", default: 0
+    t.integer "active", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -30,7 +30,9 @@ ActiveRecord::Schema.define(version: 20180416041028) do
     t.integer "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["admin_id"], name: "index_leagues_on_admin_id"
+    t.index ["deleted_at"], name: "index_leagues_on_deleted_at"
     t.index ["winner_id"], name: "index_leagues_on_winner_id"
   end
 
