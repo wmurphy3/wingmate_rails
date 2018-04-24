@@ -14,7 +14,13 @@ gem 'mysql2'
 gem 'puma', '~> 3.7'
 gem 'rack-cors', :require => 'rack/cors'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'jquery-rails'
+gem 'sass-rails'
+gem 'bootstrap', '~> 4.0.0.beta'
+gem 'rails-assets-tether', '>= 1.3.3', source: 'https://rails-assets.org'
+
+gem 'toastr-rails'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -65,3 +71,5 @@ gem 'doorkeeper-jwt'
 gem 'rectify'
 
 gem "paranoia", "~> 2.2"
+
+gem 'kaminari'

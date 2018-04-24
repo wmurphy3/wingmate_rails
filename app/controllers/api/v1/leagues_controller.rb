@@ -2,12 +2,17 @@ class Api::V1::LeaguesController < Api::V1::ApplicationController
   before_action :set_league, only: [:show, :update, :destroy]
 
   def index
-    @leagues = League.joins(:league_users).where(league_users: {user_id: current_user.id})
+    @leagues = League.joins(:league_users).where(league_users: {user_id: current_user.id}).active
     render json: @leagues, each_serializer: LeagueSerializer, scope: current_user
   end
 
   def show
     render json: @league, serializer: LeaderboardSerializer
+  end
+
+  def pending
+    @leagues = League.joins(:league_users).where(league_users: {user_id: current_user.id}).pending
+    render json: @leagues, each_serializer: LeagueSerializer, scope: current_user
   end
 
   def create
