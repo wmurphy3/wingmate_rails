@@ -23,6 +23,8 @@ Rails.application.routes.draw do
       get :activate
     end
   end
+  resources :categories
+  resources :achievements
 
   scope module: :api, defaults: { format: :json }, path: 'api' do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
