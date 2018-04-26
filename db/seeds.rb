@@ -7,24 +7,21 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user = User.find_or_create_by!(email: "clmurphy789@gmail.com") do |user|
-  user.encrypted_password = "cM!@#456"
+  user.password = "cM!@#456"
   user.is_admin = true
   user.first_name = "Clinton"
   user.last_name = "Murphy"
 end
 
-puts "user: #{user.inspect}"
-puts "errors: #{user.errors.messages}" if user.errors
-
 User.find_or_create_by!(email: "chandlercorey15@gmail.com") do |user|
-  user.encrypted_password = "cC!@#456"
+  user.password = "cC!@#456"
   user.is_admin = true
   user.first_name = "Corey"
   user.last_name = "Chandler"
 end
 
 User.find_or_create_by!(email: "willardtwashington@gmail.com") do |user|
-  user.encrypted_password = "wM!@#456"
+  user.password = "wM!@#456"
   user.is_admin = true
   user.first_name = "William"
   user.last_name = "Murphy"
