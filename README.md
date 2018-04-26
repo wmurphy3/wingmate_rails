@@ -15,5 +15,3 @@ To-Do List:
 * Admin section
   * Users
     * Review user complaints/destroy user
-  * Categories
-  * Achievements
