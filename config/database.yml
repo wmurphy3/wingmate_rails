@@ -14,3 +14,6 @@ development:
   password: MyNewPass
   host: localhost
   port: 3306
+  
+production:
+    url: <%= ENV['DATABASE_URL'] %>
